@@ -1,5 +1,5 @@
 import { Page, Locator, expect } from '@playwright/test';
-import { LoginComponent } from '../components/login_component';
+import { LoginComponent } from './login/login_component';
 
 export class HeaderComponent {
 
@@ -31,7 +31,11 @@ export class HeaderComponent {
 
   async clickLogin() {
     await this.loginButton.click();
-   return new LoginComponent(this.page); // 👈 trả về dialog
+    const loginComponent = new LoginComponent(this.page);
+    await loginComponent.waitForVisible();
+    await loginComponent.verifyVisible();
+
+    return loginComponent;// 👈 trả về dialog
   }
 
   async clickMenu(name: string) {

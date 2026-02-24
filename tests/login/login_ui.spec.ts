@@ -15,5 +15,12 @@ test.describe('Login UI', () => {
 
     await loginDialog.verifyVisible(); // 👈 rồi mới verify
   });
+  test('Toggle mật khẩu hoạt động', async ({ page }) => {
+
+    const header = new HeaderComponent(page);
+    const loginDialog = await header.clickLogin();
+
+    await loginDialog.verifyVisible();}
+  );
 
 });
