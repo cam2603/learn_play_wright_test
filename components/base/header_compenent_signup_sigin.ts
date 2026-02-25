@@ -5,10 +5,10 @@ export class HeaderSignUpSignInComponent {
   readonly title: Locator;
   readonly icon: Locator;
 
-  constructor(root: Locator) {
+  constructor(root: Locator, title: string) {
     this.root = root;
 
-    this.title = this.root.getByText('Đăng nhập');
+    this.title = this.root.getByText(title);
     this.icon = this.root.locator('app-svg-icon[name="fill_close"]');
   }
 

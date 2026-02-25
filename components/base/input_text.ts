@@ -23,12 +23,13 @@ export class InputTextComponent {
     this.errorText = root.locator('span.noti-err');
   }
 
-  async verifyVisible(placeholder?: string) {
+  async verifyVisible(placeholder?: string, countIconLeft?: number) {
     await expect(this.root).toBeVisible();
     await expect(this.input).toBeVisible();
 
     if (this.iconLeft) {
-      await expect(this.iconLeft).toBeVisible();
+        await expect(this.iconLeft).toHaveCount(countIconLeft ?? 1);
+
     }
 
     if (placeholder) {
@@ -75,7 +76,7 @@ export class InputTextComponent {
   }
   async enterValue(value: string) {
     await this.input.fill(value);
-    await this.input.blur(); // quan trọng
+    await this.input.blur(); 
   }
 
   async validateInputInvalid(value: string, expectedError: string) {

@@ -19,7 +19,7 @@ export class RegisterComponent {
     this.page = page;
     this.dialog = page.locator('app-register');
     const headerRoot = this.dialog.locator('.title');
-    this.header = new HeaderSignUpSignInComponent(headerRoot);
+    this.header = new HeaderSignUpSignInComponent(headerRoot, 'Đăng ký');
     this.formRegister = new FormRegisterComponent(this.dialog.locator('form'));
     this.buttonRegister = new ButtonComponent(this.dialog.locator('.btn-login'), 'Đăng ký');
     this.registerSocial = new SocialShellComponent(page.locator('login-social'));

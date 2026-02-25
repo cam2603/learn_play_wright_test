@@ -11,15 +11,15 @@ export class BaseAuthFormComponent {
   constructor(root: Locator) {
     this.root = root;
       this.titleEmail = this.root.getByText('Email');
-        this.titlePassword = this.root.getByText('Mật khẩu');
+        this.titlePassword = this.root.getByText('Mật khẩu' ,{ exact: true });
     this.usernameInput = new InputTextComponent(root, 'email', 'fill_mail');
     this.passwordInput = new InputTextComponent(root, 'password', 'fill_lock');
   }
 
-  async verifyCommonFields() {
+  async verifyCommonFields(numberIconPassword?: number) {
     await expect(this.titleEmail).toBeVisible();
      await expect(this.titlePassword).toBeVisible();
     await this.usernameInput.verifyVisible('Email');
-    await this.passwordInput.verifyVisible('Mật khẩu');
+    await this.passwordInput.verifyVisible('Mật khẩu', numberIconPassword??1);
   }
 }

@@ -22,7 +22,7 @@ export class LoginComponent {
     this.page = page;
     this.dialog = page.locator('app-login');
     const headerRoot = this.dialog.locator('.title');
-    this.header = new HeaderSignUpSignInComponent(headerRoot);
+    this.header = new HeaderSignUpSignInComponent(headerRoot, 'Đăng nhập');
     this.formLogin = new FormLoginComponent(this.dialog.locator('form'));
     this.optionPassword = new OptionPasswordComponent(this.dialog.locator('.box-remember'));
     this.buttonLogin = new ButtonComponent(this.dialog.locator('.btn-login'), 'Đăng nhập');
