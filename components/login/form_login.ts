@@ -9,9 +9,6 @@ export class FormLoginComponent {
     readonly usernameInput: InputTextComponent;
     readonly passwordInput: InputTextComponent;
 
-
-
-
     constructor(root: Locator) {
         this.root = root;
         this.titleEmail = this.root.getByText('Email');
@@ -33,11 +30,13 @@ export class FormLoginComponent {
     }
 
     private async verifyPasswordVisible() {
-                await expect(this.titlePassword).toBeVisible();
+        await expect(this.titlePassword).toBeVisible();
 
         await this.passwordInput.verifyVisible('Mật khẩu');
     }
     async verifyPasswordToggle() {
         await this.passwordInput.verifyPasswordToggle();
     }
+
+
 }
