@@ -20,9 +20,9 @@ test.describe('Login UI', () => {
 
         await loginDialog.formLogin.usernameInput.validateInputInvalid('A @GMAIL.COM', 'Định dạng email không đúng');
 
-        // await loginDialog.formLogin.usernameInput.validateInputInvalid('aw-1_@gmail.com', 'Định dạng email không đúng');
+        await loginDialog.formLogin.usernameInput.validateInputInvalid('aw-1_@gmail.com', 'Định dạng email không đúng');
 
-        // await loginDialog.formLogin.usernameInput.validateInputInvalid('a1@gamil.comm', 'Định dạng email không đúng');
+        await loginDialog.formLogin.usernameInput.validateInputInvalid('a1@gamil.comm', 'Định dạng email không đúng');
 
     });
 
@@ -38,7 +38,6 @@ test.describe('Login UI', () => {
 
     });
 
-
     test('Validate password empty', async ({ page }) => {
         const header = new HeaderComponent(page);
         const loginDialog = await header.clickLogin();
@@ -47,15 +46,19 @@ test.describe('Login UI', () => {
         await loginDialog.buttonLogin.clickButton();
         await loginDialog.formLogin.passwordInput.validateInputInvalid('', 'Bạn chưa nhập mật khẩu');
         await loginDialog.formLogin.passwordInput.validateInputInvalid('      ', 'Bạn chưa nhập mật khẩu');
-        
-
     });
+
     test('Validate user password thành công', async ({ page }) => {
         const header = new HeaderComponent(page);
         const loginDialog = await header.clickLogin();
         await loginDialog.formLogin.usernameInput.enterValue('a1@gamil.com');
         await loginDialog.formLogin.passwordInput.enterValue('123456');
-        await loginDialog.buttonLogin.clickButton();
         await loginDialog.formLogin.usernameInput.successfullyEnterValue();
+    });
+
+    test('Login  faile wiwh valid username and password', async ({ page }) => {
+        const header = new HeaderComponent(page);
+        const loginDialog = await header.clickLogin();
+        await loginDialog.loginUsernamePasswordFailed('a1@gamil.com', '123456');
     });
 });
