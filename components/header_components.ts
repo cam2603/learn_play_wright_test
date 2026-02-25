@@ -1,5 +1,5 @@
 import { Page, Locator, expect } from '@playwright/test';
-import { LoginComponent } from './login/login_component';
+import { LoginComponent } from '../pages/login_page';
 
 export class HeaderComponent {
 

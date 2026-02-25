@@ -10,17 +10,15 @@ test.describe('Login UI', () => {
   test('Login dialog hiển thị đúng', async ({ page }) => {
 
     const header = new HeaderComponent(page);
+    await header.clickLogin();
 
-    const loginDialog = await header.clickLogin();
-
-    await loginDialog.verifyVisible();
   });
   test('Toggle mật khẩu hoạt động', async ({ page }) => {
 
     const header = new HeaderComponent(page);
     const loginDialog = await header.clickLogin();
 
-    await loginDialog.formLogin.verifyPasswordToggle();
+    await loginDialog.formLogin.passwordInput.verifyPasswordToggle();
   });
 
   test('Remember password hoạt động', async ({ page }) => {
@@ -31,5 +29,10 @@ test.describe('Login UI', () => {
 
   });
 
+  test('Test UI login social', async ({ page }) => {
+    const header = new HeaderComponent(page);
+    const loginDialog = await header.clickLogin();
+    await loginDialog.loginSocial.verifyVisible();
+  });
 
 });
