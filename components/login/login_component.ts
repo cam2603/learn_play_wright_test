@@ -35,5 +35,12 @@ export class LoginComponent {
     await this.buttonLogin.verifyVisible();
   }
 
+  async loginUsernamePasswordFailed(username: string, password: string) {
+    await this.formLogin.usernameInput.enterValue(username);
+    await this.formLogin.passwordInput.enterValue(password);
+    await this.buttonLogin.clickButton(() => {
+      return expect(this.dialog.locator('.txt-err')).toBeVisible();
+  });
+  }
 
 }

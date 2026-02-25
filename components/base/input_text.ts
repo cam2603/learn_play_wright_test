@@ -81,7 +81,6 @@ export class InputTextComponent {
   async validateInputInvalid(value: string, expectedError: string) {
     await this.input.fill(value);
     await this.input.blur();
-    
       await expect(
         this.input.locator('xpath=following::span[@class="noti-err"][1]')
       ).toHaveText(expectedError);
