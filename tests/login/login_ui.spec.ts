@@ -10,10 +10,29 @@ test.describe('Login UI', () => {
   test('Login dialog hiển thị đúng', async ({ page }) => {
 
     const header = new HeaderComponent(page);
+    await header.clickLogin();
 
-    const loginDialog = await header.clickLogin(); // 👈 click trước
+  });
+  test('Toggle mật khẩu hoạt động', async ({ page }) => {
 
-    await loginDialog.verifyVisible(); // 👈 rồi mới verify
+    const header = new HeaderComponent(page);
+    const loginDialog = await header.clickLogin();
+
+    await loginDialog.formLogin.passwordInput.verifyPasswordToggle();
+  });
+
+  test('Remember password hoạt động', async ({ page }) => {
+    const header = new HeaderComponent(page);
+    const loginDialog = await header.clickLogin();
+
+    await loginDialog.optionPassword.clickRememberPassword();
+
+  });
+
+  test('Test UI login social', async ({ page }) => {
+    const header = new HeaderComponent(page);
+    const loginDialog = await header.clickLogin();
+    await loginDialog.loginSocial.verifyVisible();
   });
 
 });
